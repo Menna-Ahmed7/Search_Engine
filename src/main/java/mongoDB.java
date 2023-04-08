@@ -1,4 +1,4 @@
-//package database;
+package main.java;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.*;
@@ -15,10 +15,12 @@ public class mongoDB {
 
         try {
             //---------DataBase Connection
-            //data base connnection string
+            //database connnection string
             String uri ;
-            if(System.getenv("DB_URI")==null)
-                uri="mongodb://localhost:27017"; //database connection string
+            if(System.getenv("DB_URI")==null) {
+                uri = "mongodb://localhost:27017/"; //database connection string
+            }
+
             else
                 uri=System.getenv("DB_URI");
 
@@ -30,10 +32,10 @@ public class mongoDB {
             //connect to server
             MongoClient Client = MongoClients.create(settings);
 
-            // Create the data base
+            // Create the database
             db = Client.getDatabase(Database);
 
-            System.out.println("successfully connected to data base \n");
+            System.out.println(" بسم الله الرحمن الرحيم  \n");
             //---------Collection Creation
 //            db.createCollection("try");
 //            db.createCollection("try1");
@@ -41,14 +43,7 @@ public class mongoDB {
 
             Document document1 = new Document();
             document1.append("name", "Ram");
-            document1.append("age", 26);
-            document1.append("city", "Hyderabad");
-            Document document2 = new Document();
-            document2.append("name1", "Ram");
-            document2.append("age1", 26);
-            document2.append("city1", "Hyderabad");
             db.getCollection("try").insertOne(document1);
-            db.getCollection("try").insertOne(document2);
         } catch (Exception e) {
             System.out.println("faild to connect to data base ");
             e.printStackTrace();
@@ -58,7 +53,12 @@ public class mongoDB {
     public FindIterable<Document> getAllk() {
         return k.find(new org.bson.Document());
     }
+    void insert_Seed()
+    {
+        db.createCollection("Seeds");
+        Document S1 = new Document();
 
+    }
 
 
 
