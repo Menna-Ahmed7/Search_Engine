@@ -50,8 +50,10 @@ public class ThreadedCrawler implements Runnable {
                 visited.add(Url);
                 return Doc;
             }
-            else
+            else {
+                System.out.println("null here ");
                 return null;
+            }
         }
 
         catch (IOException e)

@@ -5,6 +5,7 @@ import com.mongodb.client.*;
 import org.bson.Document;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 public class mongoDB {
     MongoDatabase db;
     public MongoCollection<Document> k;
@@ -37,7 +38,7 @@ public class mongoDB {
             //---------Collection Creation
 //            db.createCollection("try");
 //            db.createCollection("try1");
-            k = db.getCollection("Links");
+            k = db.getCollection("Seeds");
 
             Document document1 = new Document();
             document1.append("Name", "Wikipedia");
@@ -50,7 +51,7 @@ public class mongoDB {
             document3.append("URL", "https://github.com/");
             Document document4 = new Document();
             document4.append("Name", "BBC News");
-            document4.append("URL", " https://www.bbc.com/news");
+            document4.append("URL", "https://www.bbc.com/news");
             Document document5 = new Document();
             document5.append("Name", "National Institute of Health");
             document5.append("URL", " https://www.nih.gov/");
@@ -59,12 +60,12 @@ public class mongoDB {
             document6.append("URL", " https://www.geeksforgeeks.org/");
 
 
-            db.getCollection("Links").insertOne(document1);
-            db.getCollection("Links").insertOne(document2);
-            db.getCollection("Links").insertOne(document3);
-            db.getCollection("Links").insertOne(document4);
-            db.getCollection("Links").insertOne(document5);
-            db.getCollection("Links").insertOne(document6);
+            db.getCollection("Seeds").insertOne(document1);
+            db.getCollection("Seeds").insertOne(document2);
+            db.getCollection("Seeds").insertOne(document3);
+            db.getCollection("Seeds").insertOne(document4);
+            db.getCollection("Seeds").insertOne(document5);
+            db.getCollection("Seeds").insertOne(document6);
         } catch (Exception e) {
             System.out.println("faild to connect to data base ");
             e.printStackTrace();
@@ -74,15 +75,27 @@ public class mongoDB {
     public FindIterable<Document> getAllk() {
         return k.find(new org.bson.Document());
     }
-    String getLink ()
+    Vector<String> getLink ()
     {
         // Access the "pages" collection
-        MongoCollection<Document> collection = db.getCollection("Links");
+        Vector<String> Links = new Vector<String>();
+        MongoCollection<Document> collection = db.getCollection("Seeds");
         // Retrieve the value of the "title" field from the first document in the collection
-        Document firstDocument = collection.find().first();
-        String title = firstDocument.getString("URL");
-        return title;
+        MongoCursor<Document>firstDocument =  collection.find().iterator();
+        try {
+            while (firstDocument.hasNext()) {
+              Document document = firstDocument.next();
+                String title = document.getString("URL");
+                Links.add(title);
+
+                System.out.println(title);
+            }
+        } finally {
+            firstDocument.close();
+        }
+        return Links;
     }
+
 
 
 
