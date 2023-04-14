@@ -40,32 +40,72 @@ public class mongoDB {
 //            db.createCollection("try1");
             k = db.getCollection("Seeds");
 
+
+
+
             Document document1 = new Document();
             document1.append("Name", "Wikipedia");
             document1.append("URL", "https://www.wikipedia.org/");
+
             Document document2 = new Document();
             document2.append("Name", "Education");
             document2.append("URL", "https://www.education.com/");
+
             Document document3 = new Document();
             document3.append("Name", "Github");
             document3.append("URL", "https://github.com/");
+
             Document document4 = new Document();
             document4.append("Name", "BBC News");
             document4.append("URL", "https://www.bbc.com/news");
+
             Document document5 = new Document();
             document5.append("Name", "National Institute of Health");
             document5.append("URL", " https://www.nih.gov/");
+
             Document document6 = new Document();
             document6.append("Name", "Geeks for Geeks");
             document6.append("URL", " https://www.geeksforgeeks.org/");
 
+            Document document7 = new Document();
+            document7.append("Name", "Souq");
+            document7.append("URL", "https://egypt.souq.com/eg-en/");
 
-            db.getCollection("Seeds").insertOne(document1);
-            db.getCollection("Seeds").insertOne(document2);
-            db.getCollection("Seeds").insertOne(document3);
-            db.getCollection("Seeds").insertOne(document4);
-            db.getCollection("Seeds").insertOne(document5);
+            Document document8 = new Document();
+            document8.append("Name", "Amazon");
+            document8.append("URL", "https://www.amazon.com/");
+
+            Document document9 = new Document();
+            document9.append("Name", "Nytimes");
+            document9.append("URL", "https://www.nytimes.com/");
+
+            Document document10 = new Document();
+            document10.append("Name", "Facebook");
+            document10.append("URL", "https://www.facebook.com/");
+
+            Document document11 = new Document();
+            document11.append("Name", "Linkedin");
+            document11.append("URL", "https://www.linkedin.com/home");
+
+            Document document12 = new Document();
+            document12.append("Name", "Hackerrank");
+            document12.append("URL", "https://www.hackerrank.com/");
+
+            // adding the links to the database
+            db.getCollection("Seeds").insertOne(document12);
+            db.getCollection("Seeds").insertOne(document8);
             db.getCollection("Seeds").insertOne(document6);
+            db.getCollection("Seeds").insertOne(document4);
+            db.getCollection("Seeds").insertOne(document1);
+
+            db.getCollection("Seeds").insertOne(document11);
+            db.getCollection("Seeds").insertOne(document3);
+            db.getCollection("Seeds").insertOne(document7);
+            db.getCollection("Seeds").insertOne(document2);
+
+            db.getCollection("Seeds").insertOne(document5);
+            db.getCollection("Seeds").insertOne(document9);
+            db.getCollection("Seeds").insertOne(document10);
         } catch (Exception e) {
             System.out.println("faild to connect to data base ");
             e.printStackTrace();
