@@ -1,5 +1,8 @@
 package main.java;
-
+//to use that class
+//1. make an object of the class like --> RobotsTxtParser parser = new RobotsTxtParser();
+//2. calll the function getrobotfile to  read the file of robot.txt like --> parser.getrobotfile("http://www.moma.org/robots.txt");
+//3. check if it is allowed or not using the function isAllowed like --> parser.isAllowed("http://www.moma.org/robots.txt")
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +11,6 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class RobotsTxtParser {
     private URL visiting;
     private String result;
